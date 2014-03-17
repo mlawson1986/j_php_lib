@@ -55,22 +55,11 @@ public class PHP {
 	public static void setHttpResponse(HttpServletResponse httpResponse){
 		response = httpResponse;
 	}
-	/**
-	 * 
-	 * @param filename The full name or path to the file, relative to the current
-	 * filepath context. 
-	 * @param filemode Permissions to set on how the file can be used, such as readonly
-	 * read/write, write, etc
-	 * @return A FileChannel object that represents a PHP file pointer.
-	 * @throws IOException 
-	 */
-	/*public static FileChannel fopen(String filename, String filemode){
-		
-		//TODO: setup filemode switch
-		return new FileChannelImpl(null, false, false, filename, false);
-		
-	}*/
 	
+	/**
+	 * Provide simple handles to all the core library functions, that way
+	 * the client only needs to import the single PHP class, allowing PHP to do all the work.
+	 */
 	public static void echo(String echoString) throws IOException{
 		PHPStringOut.echo(response,echoString);
 	}
