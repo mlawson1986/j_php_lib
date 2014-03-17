@@ -2,15 +2,21 @@
  * As an experiment, I've decided to try and implement the PHP standard
  * function library. Additional function libraries can be grabbed as additional
  * jars. This is pretty much just for fun.
+ * 
+ * This is the "front controller" as it were (even though this isn't an MVC framework) where all
+ * calls take place, and all global items are setup. The main request,response cycle is handled here.
  */
 package com.mjl.lib.php;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.nio.channels.FileChannel;
 import sun.nio.ch.*;
 import java.util.*;
 
+import com.mjl.lib.php.string.*;
 /**
  * @author Michael Lawson
  * The main PHP function library class, full of all static methods.
@@ -19,7 +25,8 @@ public class PHP {
 	
 	//as this is mainly for web, we need to maintain the http request throught execution
 	//in order for the libs to act correctly on gets and posts.
-	private static HttpServletRequest request;
+	protected static HttpServletRequest request;
+	protected static HttpServletResponse response;
 	public static HashMap<String,String> p_GET;
 	public static HashMap<String,String> p_POST;
 	public static HashMap<String,String> p_SERVER;
@@ -32,7 +39,7 @@ public class PHP {
 	/**
 	 * No need to use a constructor, everything here is static.
 	 */
-	private PHP(){}
+	protected PHP(){}
 	
 	/**
 	 * We need to maintain the request object for use by PHP HTTP related functions and constructions.
@@ -41,6 +48,13 @@ public class PHP {
 	public static void setHttpRequest(HttpServletRequest httpRequest){
 		request = httpRequest;
 	}
+	
+	/**
+	 * We need to maintain the response object  for us by PHP HTTP related functions and constructions.
+	 */
+	public static void setHttpResponse(HttpServletResponse httpResponse){
+		response = httpResponse;
+	}
 	/**
 	 * 
 	 * @param filename The full name or path to the file, relative to the current
@@ -48,6 +62,7 @@ public class PHP {
 	 * @param filemode Permissions to set on how the file can be used, such as readonly
 	 * read/write, write, etc
 	 * @return A FileChannel object that represents a PHP file pointer.
+	 * @throws IOException 
 	 */
 	/*public static FileChannel fopen(String filename, String filemode){
 		
@@ -56,23 +71,11 @@ public class PHP {
 		
 	}*/
 	
-	/**
-	 * The ubiquitous print function. Unfortunately we can't really define a new language construct for java
-	 * but print can be called as a function in PHP, so I'm going to have to go with that
-	 * @param String textToPrint
-	 * @return int
-	 */
-	
-	public static int print(String textToPrint){
-		//PrintWriter out = response.getWriter();
-		//out.print(textToPrint);
-		return 1;
+	public static void echo(String echoString) throws IOException{
+		PHPStringOut.echo(response,echoString);
 	}
 	
-	public static void echo(String textToPrint){
-		//PrintWriter out = response.getWriter();
-		//out.println(textToPrint);
-		System.out.print(textToPrint);
+	public static void print(String printString) throws IOException{
+		PHPStringOut.print(response, printString);
 	}
-	
 }
