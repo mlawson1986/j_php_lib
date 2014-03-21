@@ -33,8 +33,8 @@ public class MixedType {
 	public int[] returnNumberArray(){
 		return null;
 	}
-	public PhpNull returnNull(){
-		return PhpNull.returnNull();
+	public Object returnNull(){
+		return null;
 	}
 	
 }
