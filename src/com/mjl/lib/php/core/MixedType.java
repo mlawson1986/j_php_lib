@@ -9,32 +9,29 @@ package com.mjl.lib.php.core;
  */
 public class MixedType {
 
-	//TODO: Just stubs for now. It's late and I need to go to bed.
-	public MixedType(){
-		
+	private String type;
+	
+	public static final String INT = "int";
+	public static final String STRING = "string";
+	public static final String BOOL = "boolean";
+	public static final String FLOAT = "float";
+	public static final String STRARRAY = "string_array";
+	public static final String INTARRAY = "int_array";
+	public static final String BOOLARRAY = "boolean_array";
+	public static final String ASSOCARRAY = "associative_array";
+	//more as I remember them -_-
+	
+	
+	/**
+	 * Takes an object that represents a particular return type and allows the MixedType object to return it
+	 * as a value.
+	 * @param type
+	 */
+	public MixedType(String type){
+		this.type = type;
 	}
 	
-	public char[] returnCharArray(){
-		return null;
-	}
 	
-	public String[] returnStringArray(){
-		return null;
-	}
 	
-	public boolean returnBoolean(){
-		return false;
-	}
-	
-	public int returnNumber(){
-		return 0;
-	}
-	
-	public int[] returnNumberArray(){
-		return null;
-	}
-	public Object returnNull(){
-		return null;
-	}
 	
 }
