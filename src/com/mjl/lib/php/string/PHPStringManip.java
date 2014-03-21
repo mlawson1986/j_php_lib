@@ -1,4 +1,7 @@
 package com.mjl.lib.php.string;
+
+import com.mjl.lib.php.core.MixedType;
+
 /**
  * All functions that would manipulate strings.
  * Documentation borrowed from php.net
@@ -93,5 +96,15 @@ public class PHPStringManip {
 	public static String convert_cry_string(String str, String from, String to){
 		//TODO: This is going to be HELL!!!!
 		return "";
+	}
+	
+	/**
+	 * Decode a uuencoded string
+	 * @param data The uuencoded data
+	 * @return Returns the decoded data as a string or FALSE on failure. 
+	 */
+	public static MixedType convert_uudecode(String data){
+		//return new MixedType().returnString();
+		return null;
 	}
 }
