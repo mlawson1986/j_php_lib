@@ -21,7 +21,7 @@ import com.mjl.lib.php.string.*;
  * @author Michael Lawson
  * The main PHP function library class, full of all static methods.
  */
-public class PHP {
+public final class PHP {
 	
 	//as this is mainly for web, we need to maintain the http request throught execution
 	//in order for the libs to act correctly on gets and posts.
