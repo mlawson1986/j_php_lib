@@ -1,6 +1,8 @@
 package com.mjl.lib.php.string;
 
-import com.mjl.lib.php.core.MixedType;
+import com.mjl.lib.php.core.Mixed;
+import com.mjl.lib.php.exceptions.InvalidPHPDataException;
+import com.mjl.lib.php.exceptions.UndefinedPHPTypeException;
 
 /**
  * All functions that would manipulate strings.
@@ -103,8 +105,30 @@ public class PHPStringManip {
 	 * @param data The uuencoded data
 	 * @return Returns the decoded data as a string or FALSE on failure. 
 	 */
-	public static MixedType convert_uudecode(String data){
-		//return new MixedType().returnString();
+	public static Mixed convert_uudecode(String data){
+	/*	if(true){
+			try {
+				return new Mixed(Mixed.STRING,data);
+			} catch (UndefinedPHPTypeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidPHPDataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else{
+			try {
+				return new Mixed(Mixed.BOOL,data);
+			} catch (UndefinedPHPTypeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidPHPDataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		*/
 		return null;
 	}
 }

@@ -13,10 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
+
 import sun.nio.ch.*;
+
 import java.util.*;
 
+import com.mjl.lib.php.core.Mixed;
+import com.mjl.lib.php.exceptions.InvalidPHPArgumentException;
+import com.mjl.lib.php.exceptions.UndefinedPHPTypeException;
 import com.mjl.lib.php.string.*;
+
 /**
  * @author Michael Lawson
  * The main PHP function library class, full of all static methods.
@@ -60,11 +66,35 @@ public final class PHP {
 	 * Provide simple handles to all the core library functions, that way
 	 * the client only needs to import the single PHP class, allowing PHP to do all the work.
 	 */
-	public static void echo(String echoString) throws IOException{
+	public static void echo(Object echoString) throws IOException{
 		PHPStringOut.echo(response,echoString);
 	}
 	
-	public static void print(String printString) throws IOException{
+	public static void print(Object printString) throws IOException{
 		PHPStringOut.print(response, printString);
+	}
+	
+	public static Mixed strpos(String haystack,String needle, int offset) throws IOException{
+		try {
+			return PHPStringUtil.strpos(haystack, needle, offset);
+		} catch (InvalidPHPArgumentException e) {
+			PHPStringOut.echo(response, e.getMessage());
+			return null;
+		} catch (UndefinedPHPTypeException e) {
+			PHPStringOut.echo(response, e.getMessage());
+			return null;
+		}
+		
+	}
+	public static Mixed strpos(String haystack, String needle) throws IOException{
+		try {
+			return PHPStringUtil.strpos(haystack, needle);
+		} catch (InvalidPHPArgumentException e) {
+			PHPStringOut.echo(response, e.getMessage());
+			return null;
+		} catch (UndefinedPHPTypeException e) {
+			PHPStringOut.echo(response, e.getMessage());
+			return null;
+		}
 	}
 }

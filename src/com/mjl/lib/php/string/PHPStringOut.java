@@ -20,15 +20,15 @@ public class PHPStringOut{
 	 * @return int
 	 */
 	
-	public static int print(HttpServletResponse response, String textToPrint) throws IOException{
+	public static int print(HttpServletResponse response, Object textToPrint) throws IOException{
 		PrintWriter out = response.getWriter();
-		out.print(textToPrint);
+		out.print(textToPrint.toString());//may not always be a string
 		return 1;
 	}
 	
-	public static void echo(HttpServletResponse response, String textToPrint) throws IOException{
+	public static void echo(HttpServletResponse response, Object textToPrint) throws IOException{
 		PrintWriter out = response.getWriter();
-		out.println(textToPrint);
+		out.print(textToPrint.toString());//may not always be a string
 	}
 	
 }
