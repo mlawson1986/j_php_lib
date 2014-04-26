@@ -63,17 +63,55 @@ public final class PHP {
 	}
 	
 	/**
-	 * Provide simple handles to all the core library functions, that way
-	 * the client only needs to import the single PHP class, allowing PHP to do all the work.
+	 * Print the string to standard out
+	 * @param echoString
+	 * @throws IOException
 	 */
 	public static void echo(Object echoString) throws IOException{
 		PHPStringOut.echo(response,echoString);
 	}
-	
-	public static void print(Object printString) throws IOException{
-		PHPStringOut.print(response, printString);
+	/**
+	 * Print the string to standard out. Always returns 1
+	 * @param printString
+	 * @throws IOException
+	 */
+	public static int print(Object printString) throws IOException{
+		return PHPStringOut.print(response, printString);
 	}
-	
+	/**
+	 * Returns an ASCII string containing the hexadecimal representation of str. The conversion is done byte-wise with the high-nibble first. 
+	 * @param str
+	 * @return
+	 */
+	public static String bin2hex(String str){
+		return PHPStringManip.bin2hex(str);
+	}
+	/**
+	 * Returns a string with backslashes before the characters that are listed in the charlist parameter
+	 * @param str The string to be escaped
+	 * @param charlist A list of characters to be escaped. If charlist contains characters \n, \r etc., they are converted in C-like style, while other non-alphanumeric characters with ASCII codes lower than 32 and higher than 126 converted to octal representation. 
+	 * @return
+	 */
+	public static String addcslashes(String str, String charlist){
+		return PHPStringManip.addcslashes(str, charlist);
+	}
+	/**
+	 * Returns a string with backslashes before characters that need to be escaped. These characters are single quote ('), double quote ("), backslash (\) and NUL (the NULL byte). 
+	 * @param str
+	 * @return
+	 */
+	public static String addcslashes(String str){
+		return PHPStringManip.addslashes(str);
+	}
+	/**
+	 * Find the position of the first occurrence of a substring in a string starting at a given offset
+	 * @param haystack
+	 * @param needle
+	 * @param offset
+	 * @return
+	 * @throws InvalidPHPArgumentException
+	 * @throws UndefinedPHPTypeException
+	 */
 	public static Mixed strpos(String haystack,String needle, int offset) throws IOException{
 		try {
 			return PHPStringUtil.strpos(haystack, needle, offset);
@@ -86,6 +124,14 @@ public final class PHP {
 		}
 		
 	}
+	/**
+	 * Find the position of the first occurrence of a substring in a string
+	 * @param haystack
+	 * @param needle
+	 * @return
+	 * @throws InvalidPHPArgumentException
+	 * @throws UndefinedPHPTypeException
+	 */
 	public static Mixed strpos(String haystack, String needle) throws IOException{
 		try {
 			return PHPStringUtil.strpos(haystack, needle);
@@ -96,5 +142,33 @@ public final class PHP {
 			PHPStringOut.echo(response, e.getMessage());
 			return null;
 		}
+	}
+	/**
+	 * Counts the number of occurrences of every byte-value (0..255) in string and returns it in various ways. 
+	 *  Depending on mode count_chars() returns one of the following:
+
+    0 - an array with the byte-value as key and the frequency of every byte as value.
+    1 - same as 0 but only byte-values with a frequency greater than zero are listed.
+    2 - same as 0 but only byte-values with a frequency equal to zero are listed.
+    3 - a string containing all unique characters is returned.
+    4 - a string containing all not used characters is returned.
+
+	 * @param str The examined string
+	 * @param mode See return values
+	 * @return
+	 */
+	public static Mixed count_chars(String str, int mode){
+		return PHPStringUtil.count_chars(str,mode);
+	}
+	/**
+	 * Counts the number of occurrences of every byte-value (0..255) in string and returns it in various ways. 
+	 *  Depending on mode count_chars() returns one the default mode of 0:
+	 *  an array with the byte-value as key and the frequency of every byte as value.
+	 * @param str The examined string
+	 * @param mode See return values
+	 * @return
+	 */
+	public static Mixed count_chars(String str){
+		return PHPStringUtil.count_chars(str);
 	}
 }

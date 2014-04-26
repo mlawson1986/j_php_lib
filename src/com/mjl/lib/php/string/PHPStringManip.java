@@ -39,9 +39,40 @@ public class PHPStringManip {
 	 * @param str
 	 * @return
 	 */
+	//TODO: This one sucks
 	public static String bin2hex(String str){
-		//TODO
-		return "";
+		byte[] chars = str.getBytes();
+		StringBuffer strBuff = new StringBuffer();
+		
+		for(int i = 0;i < chars.length; i++){
+			Byte currByte = Byte.valueOf(chars[i]);
+			
+			switch((int)currByte){
+			case 10:
+				strBuff.append('A');
+				break;
+			case 11:
+				strBuff.append('B');
+				break;
+			case 12:
+				strBuff.append('C');
+				break;
+			case 13:
+				strBuff.append('D');
+				break;
+			case 14:
+				strBuff.append('E');
+				break;
+			case 15:
+				strBuff.append('F');
+				break;
+			default:
+				strBuff.append(currByte);
+				break;
+			}
+			
+		}
+		return strBuff.toString();
 	}
 	
 	/**
@@ -131,4 +162,16 @@ public class PHPStringManip {
 		*/
 		return null;
 	}
+	
+	/**
+	 * Uuencode translates all strings (including binary's ones) into printable characters, making them safe for network transmissions. 
+	 * Uuencoded data is about 35% larger than the original. 
+	 * @param data
+	 * @return
+	 */
+	public static Mixed convert_uuencode(String data){
+		return null;
+	}
+	
+	
 }

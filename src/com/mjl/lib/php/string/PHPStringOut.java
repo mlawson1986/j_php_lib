@@ -20,12 +20,25 @@ public class PHPStringOut{
 	 * @return int
 	 */
 	
+	/**
+	 * Print the string to standard out. Always returns 1.
+	 * @param response
+	 * @param textToPrint
+	 * @return
+	 * @throws IOException
+	 */
 	public static int print(HttpServletResponse response, Object textToPrint) throws IOException{
 		PrintWriter out = response.getWriter();
 		out.print(textToPrint.toString());//may not always be a string
 		return 1;
 	}
 	
+	/**
+	 * Print the string to standard out.
+	 * @param response
+	 * @param textToPrint
+	 * @throws IOException
+	 */
 	public static void echo(HttpServletResponse response, Object textToPrint) throws IOException{
 		PrintWriter out = response.getWriter();
 		out.print(textToPrint.toString());//may not always be a string
