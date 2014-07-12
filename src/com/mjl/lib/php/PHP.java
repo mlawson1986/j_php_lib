@@ -171,4 +171,14 @@ public final class PHP {
 	public static Mixed count_chars(String str){
 		return PHPStringUtil.count_chars(str);
 	}
+	
+	/**
+	 * Returns a one-character string containing the character specified by ascii
+	 * A negative number returns the empty string
+	 * @param ascii The ascii code
+	 * @return The specified character
+	 */
+	public static String chr(int ascii){
+		return PHPStringUtil.chr(ascii);
+	}
 }

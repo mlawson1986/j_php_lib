@@ -1,5 +1,6 @@
 package com.mjl.lib.php.string;
 
+
 import com.mjl.lib.php.core.Mixed;
 import com.mjl.lib.php.exceptions.InvalidPHPArgumentException;
 import com.mjl.lib.php.exceptions.UndefinedPHPTypeException;
@@ -24,6 +25,13 @@ public class PHPStringUtil {
 		//TODO: This was more of a test for the mixed type than anything else, so we do need to refactor this
 		//this returns the last index of, whereas in PHP we need to return the first index of.
 		//char[] = haystack.indexOf(arg0)
+		
+		char[] characters = haystack.toCharArray();
+		char[] running;
+		for(int i = 0; i < characters.length; i++) {
+			
+		}
+		
 		
 	/*	if(index >= 0){
 			return new Mixed(Mixed.INT,new Integer(index));
@@ -68,5 +76,36 @@ public class PHPStringUtil {
 	public static Mixed count_chars(String str){
 		count_chars(str,0);
 		return null;
+	}
+	
+	/**
+	 * Returns a one-character string containing the character specified by ascii
+	 * A negative number returns the empty string
+	 * @param ascii The ascii code
+	 * @return The specified character
+	 */
+	public static String chr(int ascii){
+		
+		if(ascii < 0) {
+			return "";
+		}
+		//the PHP method of handling a number greater than or equal to 256 is to return the number mod 256 as the string
+		if(ascii >= 256) {
+			return new Integer(ascii%256).toString();
+		}
+		
+		return getAsciiMappings()[ascii];
+	}
+	
+	private static String[] getAsciiMappings() {
+		
+		String[] asciiMappings = new String[255];
+		asciiMappings[0] = null;
+		
+		for(int i = 0; i < 255; i++) {
+			asciiMappings[i] = Character.toString((char) i);
+		}
+		return asciiMappings;
+		
 	}
 }
