@@ -1,7 +1,11 @@
 package com.mjl.lib.php.string;
 
 
+
+import java.util.ArrayList;
+
 import com.mjl.lib.php.core.Mixed;
+import com.mjl.lib.php.core.PHPAssocArray;
 import com.mjl.lib.php.exceptions.InvalidPHPArgumentException;
 import com.mjl.lib.php.exceptions.UndefinedPHPTypeException;
 
@@ -71,13 +75,41 @@ public class PHPStringUtil {
 	 */
 	public static Mixed count_chars(String str, int mode){
 		
+		switch(mode){
+			case 0:
+				
+				break;
+		}
+		
 		return null;
 	}
 	public static Mixed count_chars(String str){
 		count_chars(str,0);
 		return null;
 	}
-	
+	//modes for this method are 0, 1, and 2
+	private static PHPAssocArray getCountCharArray(String str, int mode) {
+		byte[] bytes;
+		ArrayList<Byte> bytesPresent = new ArrayList<Byte>();
+		char[] chars = str.toCharArray();
+		PHPAssocArray assoc = new PHPAssocArray();
+		for(int i = 0; i < chars.length; i++) {
+			bytesPresent.add(new Byte((byte) chars[i]));
+			
+			
+			
+			switch(mode) {
+			case 0:
+				bytes = new byte[255];
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			}
+		}
+		return null;
+	}
 	/**
 	 * Returns a one-character string containing the character specified by ascii
 	 * A negative number returns the empty string
